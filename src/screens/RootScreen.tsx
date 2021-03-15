@@ -1,10 +1,17 @@
 import React from 'react';
 
 // @Screens
-import { AppScreen } from './';
+import { AppScreen } from './App/';
+
+// @Context
+import { SessionState } from '../context/';
 
 const RootScreen = () => {
-  return <AppScreen />;
+  return (
+    <SessionState>
+      <AppScreen />
+    </SessionState>
+  );
 };
 
 export default RootScreen;
