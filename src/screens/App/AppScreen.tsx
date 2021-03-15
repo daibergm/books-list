@@ -4,21 +4,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+// @Screens
+import { LoginScreen } from '../Login/';
+import { HomeScreen } from '../Home/';
+
 // Variables
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
-const Login = () => (
-  <View>
-    <Text>Login</Text>
-  </View>
-);
-
-const Home = () => (
-  <View>
-    <Text>Home</Text>
-  </View>
-);
 
 const AppScreen = () => {
   return (
@@ -30,14 +22,14 @@ const AppScreen = () => {
       )}
       {true && (
         <>
-          {false && (
+          {true && (
             <Stack.Navigator headerMode="none" initialRouteName={'LOGIN'}>
-              <Stack.Screen name={'LOGIN'} component={Login} />
+              <Stack.Screen name={'LOGIN'} component={LoginScreen} />
             </Stack.Navigator>
           )}
-          {true && (
+          {false && (
             <Tab.Navigator initialRouteName={'HOME'}>
-              <Tab.Screen name={'HOME'} component={Home} />
+              <Tab.Screen name={'HOME'} component={HomeScreen} />
             </Tab.Navigator>
           )}
         </>

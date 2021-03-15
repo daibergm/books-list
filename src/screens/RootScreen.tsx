@@ -1,7 +1,7 @@
 import React from 'react';
 
 // @Screens
-import AppScreen from './App/AppScreen';
+import { AppScreen } from './';
 
 const RootScreen = () => {
   return <AppScreen />;
