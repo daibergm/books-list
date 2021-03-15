@@ -1,15 +1,28 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, Button } from 'react-native';
 
 // @Components
 import { ContainerComponent } from '../../components/';
 
-const HomeScreen = () => (
-  <ContainerComponent>
-    <View>
-      <Text>Home</Text>
-    </View>
-  </ContainerComponent>
-);
+// @Context
+import { SessionContext } from '../../context/';
+
+const HomeScreen = () => {
+  const { onLogout } = useContext(SessionContext);
+
+  return (
+    <ContainerComponent>
+      <View>
+        <Text>Home</Text>
+        <Button
+          title="Logout"
+          onPress={() => {
+            onLogout && onLogout();
+          }}
+        />
+      </View>
+    </ContainerComponent>
+  );
+};
 
 export default HomeScreen;

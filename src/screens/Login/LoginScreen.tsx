@@ -8,7 +8,7 @@ import { ContainerComponent } from '../../components/';
 import { SessionContext } from '../../context/';
 
 const LoginScreen = () => {
-  const { onLogin, onLogout } = useContext(SessionContext);
+  const { onLogin } = useContext(SessionContext);
 
   return (
     <ContainerComponent>
@@ -25,7 +25,6 @@ const LoginScreen = () => {
               });
           }}
         />
-        <Button title="Logout" onPress={() => onLogout()} />
       </View>
     </ContainerComponent>
   );
