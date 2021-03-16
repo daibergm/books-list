@@ -1,15 +1,20 @@
 import React from 'react';
 
 // @Components
-import { ContainerComponent } from '../../components/';
+import { ContainerComponent, Header } from '../../components/';
 
 // @Containers
 import { LoginContainer } from '../../containers/';
+// @Constants
+import { LOGIN_ROUTE } from '../../constants/';
 
 const LoginScreen = () => {
   return (
     <ContainerComponent>
-      <LoginContainer />
+      <>
+        <Header title={LOGIN_ROUTE} />
+        <LoginContainer />
+      </>
     </ContainerComponent>
   );
 };

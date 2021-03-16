@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
-import { Text } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -11,7 +10,7 @@ import { GeneralStyles } from '../../assets/';
 import { User } from '../../types/session';
 
 // @Components
-import { Button, Input } from '../common';
+import { Button, Input, Text } from '../common';
 
 // Variables
 const initialValues = {
@@ -69,11 +68,6 @@ function LoginComponent(props: Props) {
                 ios: 'padding',
                 android: undefined,
               })}>
-              <View style={GeneralStyles.alignCenter}>
-                <Text style={GeneralStyles.defaultText} h3>
-                  LOGIN
-                </Text>
-              </View>
               <View style={GeneralStyles.marginT30}>
                 <Input
                   value={values.name}

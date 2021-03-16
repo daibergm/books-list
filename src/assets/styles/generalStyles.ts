@@ -59,19 +59,28 @@ export default StyleSheet.create({
     color: Colors.primary,
   },
   inputContainerStyle: {
-    height: moderateScale(40, 0.3),
+    height: moderateScale(48, 0.3),
     borderBottomColor: Colors.secondary,
   },
   // Texts
-  defaultText: {
-    color: Colors.primary,
+  h3: {
+    fontSize: moderateScale(30, 0.3),
   },
   // Fonts
+  defaultFont: {
+    fontFamily: 'Mount Hills',
+  },
+  fontSize14: {
+    fontSize: moderateScale(14, 0.3),
+  },
   fontSize16: {
     fontSize: moderateScale(16, 0.3),
   },
   fontSize18: {
     fontSize: moderateScale(18, 0.3),
+  },
+  fontSize32: {
+    fontSize: moderateScale(32, 0.3),
   },
   fontBold: {
     fontWeight: 'bold',

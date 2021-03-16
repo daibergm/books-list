@@ -8,9 +8,13 @@ import Styles from './styles';
 const InputComponent = (props: InputProps) => {
   return (
     <Input
-      errorStyle={Styles.inputError}
+      errorStyle={[Styles.inputError, GeneralStyles.defaultFont]}
       placeholderTextColor={Colors.secondary}
-      inputStyle={[GeneralStyles.fontSize16, GeneralStyles.inputStyle]}
+      inputStyle={[
+        GeneralStyles.fontSize16,
+        GeneralStyles.inputStyle,
+        GeneralStyles.defaultFont,
+      ]}
       inputContainerStyle={GeneralStyles.inputContainerStyle}
       {...props}
     />

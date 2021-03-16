@@ -4,6 +4,7 @@ import { StyleProp, ViewStyle } from 'react-native';
 
 // @Assets
 import { GeneralStyles } from '../../../assets/';
+import Style from './styles';
 
 interface Props extends ButtonProps {
   secondary?: boolean;
@@ -17,7 +18,11 @@ const ButtonComponent = ({ secondary, ...otherProps }: Props) => {
 
   return (
     <Button
-      titleStyle={[GeneralStyles.fontBold, GeneralStyles.fontSize18]}
+      titleStyle={[
+        GeneralStyles.fontSize18,
+        Style.font,
+        GeneralStyles.defaultFont,
+      ]}
       buttonStyle={[GeneralStyles.defaultButton, buttonStyle]}
       disabledStyle={GeneralStyles.disabledButton}
       {...otherProps}
