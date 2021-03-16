@@ -11,4 +11,6 @@ export const tKeys = {
   agePlaceholder: 'agePlaceholder',
   ageError: 'ageError',
   termsAndConditionsLabel: 'termsAndConditionsLabel',
+  // Library screen
+  libraryLabel: 'libraryLabel',
 };

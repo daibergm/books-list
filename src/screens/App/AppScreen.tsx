@@ -7,13 +7,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // @Screens
 import { LoginScreen } from '../Login/';
-import { HomeScreen } from '../Home/';
+import { LibraryScreen } from '../Library';
 
 // @Context
 import { SessionContext } from '../../context/';
 
 // @Constants
-import { LOGIN_ROUTE, HOME_ROUTE } from '../../constants/';
+import { LOGIN_ROUTE, LIBRARY_ROUTE } from '../../constants/';
 
 // Variables
 const Stack = createStackNavigator();
@@ -38,8 +38,8 @@ const AppScreen = () => {
               </Stack.Navigator>
             )}
             {isAuthenticated && (
-              <Tab.Navigator initialRouteName={HOME_ROUTE}>
-                <Tab.Screen name={HOME_ROUTE} component={HomeScreen} />
+              <Tab.Navigator initialRouteName={LIBRARY_ROUTE}>
+                <Tab.Screen name={LIBRARY_ROUTE} component={LibraryScreen} />
               </Tab.Navigator>
             )}
           </>
