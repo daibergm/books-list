@@ -8,9 +8,10 @@ import { tKeys } from '../constants/';
 
 /**
  * Used to generate an array of ages
+ * @param {TFunction<string>} t Function to translate a string
  * @returns {AgeDropdownItem[]}
  */
-export const ageGenerator = (t: TFunction<string>) => {
+export const ageGenerator = (t: TFunction<string>): AgeDropdownItem[] => {
   const agesItems: AgeDropdownItem[] = [
     {
       label: t(tKeys.agePlaceholder),

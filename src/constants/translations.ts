@@ -13,6 +13,8 @@ const resources = {
       agePlaceholder: 'Age',
       ageError: 'The age is required.',
       termsAndConditionsLabel: 'Accept terms and conditions?',
+      // Alerts
+      'Network Error': 'Internal server error.',
     },
   },
   es: {
@@ -29,6 +31,8 @@ const resources = {
       agePlaceholder: 'Edad',
       ageError: 'La edad es requerida.',
       termsAndConditionsLabel: '¿Acceptas los terminos y condiciones?',
+      // Alerts
+      'Network Error': 'Problemas internos con el servidor.',
     },
   },
 };

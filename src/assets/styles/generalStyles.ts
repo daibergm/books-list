@@ -36,6 +36,9 @@ export default StyleSheet.create({
   marginT15: {
     marginTop: moderateScale(15, 0.3),
   },
+  marginT25: {
+    marginTop: moderateScale(25, 0.3),
+  },
   marginT30: {
     marginTop: moderateScale(30, 0.3),
   },
@@ -78,6 +81,9 @@ export default StyleSheet.create({
   // Fonts
   defaultFont: {
     fontFamily: 'Mount Hills',
+  },
+  fontSize12: {
+    fontSize: moderateScale(12, 0.3),
   },
   fontSize14: {
     fontSize: moderateScale(14, 0.3),

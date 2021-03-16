@@ -35,6 +35,16 @@ const SessionReducer = (state: Session = initialState, action: Action) => {
       };
     }
 
+    case ActionTypes.SHOW_ALERT:
+    case ActionTypes.HIDE_ALERT: {
+      const newState: Session = {
+        ...state,
+        ...action.payload,
+      };
+
+      return newState;
+    }
+
     default: {
       return state;
     }
