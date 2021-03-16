@@ -2,16 +2,34 @@ import React from 'react';
 import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Formik } from 'formik';
+import * as yup from 'yup';
 
 // @Assets
 import { GeneralStyles } from '../../assets/';
-import Styles from './styles';
 
 // @Types
 import { User } from '../../types/session';
 
 // @Components
 import { Button, Input } from '../common';
+
+// Variables
+const initialValues = {
+  name: '',
+  lastName: '',
+  email: '',
+  age: '',
+  termsAndConditions: '',
+};
+
+const validationSchema = yup.object().shape({
+  name: yup.string().trim().required('The name is required'),
+  lastName: yup.string().trim().required('The last name is required'),
+  email: yup
+    .string()
+    .required('The email is required')
+    .email('Please enter a valid email'),
+});
 
 interface Props {
   submitFunction: (values: User) => void;
@@ -26,22 +44,18 @@ function LoginComponent(props: Props) {
   return (
     <View style={[GeneralStyles.flex1]}>
       <Formik
-        initialValues={{
-          name: '',
-          lastName: '',
-          email: '',
-          age: '',
-          termsAndConditions: '',
-        }}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}>
         {({
           values,
           handleChange,
           errors,
           setFieldTouched,
-          touched,
           isValid,
           handleSubmit,
+          touched,
+          dirty,
         }) => (
           <ScrollView
             alwaysBounceVertical={false}
@@ -56,13 +70,15 @@ function LoginComponent(props: Props) {
                 android: undefined,
               })}>
               <View style={GeneralStyles.alignCenter}>
-                <Text h3>LOGIN</Text>
+                <Text style={GeneralStyles.defaultText} h3>
+                  LOGIN
+                </Text>
               </View>
-              <View>
+              <View style={GeneralStyles.marginT30}>
                 <Input
                   value={values.name}
                   placeholder="Name"
-                  errorMessage="The name is required"
+                  errorMessage={touched.name ? errors.name : undefined}
                   onChangeText={handleChange('name')}
                   onBlur={() => setFieldTouched('name')}
                 />
@@ -70,7 +86,7 @@ function LoginComponent(props: Props) {
                 <Input
                   value={values.lastName}
                   placeholder="Last name"
-                  errorMessage="The last name is required"
+                  errorMessage={touched.lastName ? errors.lastName : undefined}
                   onChangeText={handleChange('lastName')}
                   onBlur={() => setFieldTouched('lastName')}
                 />
@@ -78,23 +94,22 @@ function LoginComponent(props: Props) {
                 <Input
                   value={values.email}
                   placeholder="Email"
-                  errorMessage="The email is required"
+                  errorMessage={touched.email ? errors.email : undefined}
                   onChangeText={handleChange('email')}
                   onBlur={() => setFieldTouched('email')}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
                 />
 
                 <View style={[GeneralStyles.marginT30]}>
                   <Button
                     title="LOGIN"
                     testID="loginButton"
-                    disabled={loading && !isValid}
+                    disabled={loading || !isValid || !dirty}
                     onPress={handleSubmit}
                     loading={loading}
                   />
                 </View>
-                {touched.name && errors.name && (
-                  <Text style={Styles.errorLabel}>{errors.name}</Text>
-                )}
               </View>
             </KeyboardAvoidingView>
           </ScrollView>

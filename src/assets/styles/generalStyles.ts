@@ -62,6 +62,10 @@ export default StyleSheet.create({
     height: moderateScale(40, 0.3),
     borderBottomColor: Colors.secondary,
   },
+  // Texts
+  defaultText: {
+    color: Colors.primary,
+  },
   // Fonts
   fontSize16: {
     fontSize: moderateScale(16, 0.3),
