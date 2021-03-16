@@ -5,14 +5,11 @@
   "scripts": {
     "android": "npx react-native run-android",
     "android-release": "cd android && ./gradlew assembleRelease && cd ..",
-    "build": "yarn run clean && yarn run tsc --",
     "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
     "clean:android": "cd android && ./gradlew clean && cd ..",
     "clean:ios": "cd ios && pod cache clean --all;rm -rf ~/Library/Caches/CocoaPods; rm -rf Pods; rm -rf ~/Library/Developer/Xcode/DerivedData/*; pod deintegrate; pod setup; pod install;",
     "ios": "npx react-native run-ios --simulator \"iPhone X\"",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "prettier": "npx prettier -l 'src/**/*.tsx'",
-    "server": "json-server --watch db.json",
     "start": "npx react-native start",
     "start-clean": "npx react-native start --reset-cache",
     "test": "jest"
@@ -47,6 +44,7 @@
     "@types/lodash": "^4.14.168",
     "@types/react-native": "^0.63.2",
     "@types/react-test-renderer": "^16.9.2",
+    "@types/yup": "^0.29.11",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "babel-jest": "^25.1.0",
