@@ -1,3 +1,1 @@
-import ContainerComponent from './ContainerComponent';
-
-export default ContainerComponent;
+export { default as ContainerComponent } from './ContainerComponent';

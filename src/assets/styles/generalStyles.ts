@@ -32,6 +32,14 @@ export default StyleSheet.create({
   mHeight100: {
     maxHeight: '100%',
   },
+  // Margins
+  marginT30: {
+    marginTop: moderateScale(30, 0.3),
+  },
+  // Paddings
+  paddingH15: {
+    paddingHorizontal: moderateScale(15, 0.3),
+  },
   // Buttons
   defaultButton: {
     height: moderateScale(40, 0.3),
@@ -47,12 +55,19 @@ export default StyleSheet.create({
     backgroundColor: Colors.white,
   },
   // Inputs
-  label: {
-    color: Colors.white,
+  inputStyle: {
+    color: Colors.primary,
+  },
+  inputContainerStyle: {
+    height: moderateScale(40, 0.3),
+    borderBottomColor: Colors.secondary,
   },
   // Fonts
   fontSize16: {
     fontSize: moderateScale(16, 0.3),
+  },
+  fontSize18: {
+    fontSize: moderateScale(18, 0.3),
   },
   fontBold: {
     fontWeight: 'bold',

@@ -1,31 +1,15 @@
-import React, { useContext } from 'react';
-import { View, Text, Button } from 'react-native';
+import React from 'react';
 
 // @Components
 import { ContainerComponent } from '../../components/';
 
-// @Context
-import { SessionContext } from '../../context/';
+// @Containers
+import { LoginContainer } from '../../containers/';
 
 const LoginScreen = () => {
-  const { onLogin } = useContext(SessionContext);
-
   return (
     <ContainerComponent>
-      <View>
-        <Text>Login</Text>
-        <Button
-          title="Login"
-          onPress={() => {
-            onLogin &&
-              onLogin({
-                name: 'Daiber',
-                lastName: 'Gonzalez',
-                email: 'dgm@gmail.com',
-              });
-          }}
-        />
-      </View>
+      <LoginContainer />
     </ContainerComponent>
   );
 };
