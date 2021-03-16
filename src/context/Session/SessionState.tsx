@@ -65,6 +65,7 @@ function SessionState({ children }: Props): JSX.Element {
           type: ActionTypes.LOGIN_SUCCESS,
           payload: {
             user: rs.data,
+            hasAlert: false,
           },
         });
 

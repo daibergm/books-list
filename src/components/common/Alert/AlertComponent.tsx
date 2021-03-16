@@ -44,6 +44,8 @@ const AlertComponent = () => {
         autoHide: false,
         backgroundColor: getBC(),
       });
+    } else {
+      hideMessage();
     }
   }, [alertCode, alertType, hasAlert, t]);
 
