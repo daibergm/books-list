@@ -4,6 +4,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { moderateScale } from 'react-native-size-matters';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 // @Assets
 import { GeneralStyles, Colors } from '../../assets/';
@@ -19,6 +20,9 @@ import { Button, Input, Switch, Text } from '../common';
 // @Utils
 import { ageGenerator } from '../../utils/';
 
+// @Constants
+import { tKeys, testIds } from '../../constants/';
+
 // Variables
 const initialValues = {
   name: '',
@@ -29,15 +33,10 @@ const initialValues = {
 };
 
 const validationSchema = yup.object().shape({
-  name: yup.string().trim().required('The name is required'),
-  lastName: yup.string().trim().required('The last name is required'),
-  email: yup
-    .string()
-    .required('The email is required')
-    .email('Please enter a valid email'),
-  age: yup
-    .string()
-    .test('required', 'The age is required', (val: string) => val !== '0'),
+  name: yup.string().trim().required(tKeys.nameError),
+  lastName: yup.string().trim().required(tKeys.lastNameError),
+  email: yup.string().required(tKeys.emailError).email(tKeys.emailInvalid),
+  age: yup.string().test('required', tKeys.ageError, (val: any) => val !== '0'),
   termsAndConditions: yup.bool().oneOf([true], 'Field must be checked'),
 });
 
@@ -48,6 +47,7 @@ interface Props {
 
 function LoginComponent(props: Props) {
   const { submitFunction, loading } = props;
+  const { t } = useTranslation();
 
   const onSubmit = (values: User) => submitFunction(values);
 
@@ -92,22 +92,28 @@ function LoginComponent(props: Props) {
             <View style={[GeneralStyles.flex1]}>
               <Input
                 value={values.name}
-                placeholder="Name"
-                errorMessage={touched.name ? errors.name : undefined}
+                placeholder={t(tKeys.namePlaceholder)}
+                errorMessage={
+                  touched.name ? t(errors.name as string) : undefined
+                }
                 onChangeText={handleChange('name')}
                 onBlur={() => setFieldTouched('name')}
               />
               <Input
                 value={values.lastName}
-                placeholder="Last name"
-                errorMessage={touched.lastName ? errors.lastName : undefined}
+                placeholder={t(tKeys.lastNamePlaceholder)}
+                errorMessage={
+                  touched.lastName ? t(errors.lastName as string) : undefined
+                }
                 onChangeText={handleChange('lastName')}
                 onBlur={() => setFieldTouched('lastName')}
               />
               <Input
                 value={values.email}
-                placeholder="Email"
-                errorMessage={touched.email ? errors.email : undefined}
+                placeholder={t(tKeys.emailPlaceholder)}
+                errorMessage={
+                  touched.email ? t(errors.email as string) : undefined
+                }
                 onChangeText={handleChange('email')}
                 onBlur={() => setFieldTouched('email')}
                 keyboardType="email-address"
@@ -120,7 +126,7 @@ function LoginComponent(props: Props) {
                   Styles.pickerLabel,
                 ]}
                 activeItemStyle={Styles.activeItem}
-                items={ageGenerator()}
+                items={ageGenerator(t)}
                 defaultValue="0"
                 containerStyle={Styles.pickerContainerStyle}
                 style={[Styles.pickerStyle]}
@@ -133,12 +139,12 @@ function LoginComponent(props: Props) {
               />
               {errors.age && (
                 <Text style={Styles.pickerErrorLabel} danger>
-                  {errors.age}
+                  {t(errors.age)}
                 </Text>
               )}
               <View style={GeneralStyles.marginT15}>
                 <Switch
-                  label="Accept terms and conditions?"
+                  label={t(tKeys.termsAndConditionsLabel)}
                   value={values.termsAndConditions}
                   onValueChange={(value) =>
                     onHandlerSwitchChange(value, handleChange)
@@ -147,8 +153,8 @@ function LoginComponent(props: Props) {
               </View>
               <View style={[GeneralStyles.marginT30, GeneralStyles.paddingB15]}>
                 <Button
-                  title="LOGIN"
-                  testID="loginButton"
+                  title={t(tKeys.loginLabel).toUpperCase()}
+                  testID={testIds.loginBtn}
                   disabled={loading || !isValid || !dirty}
                   onPress={handleSubmit}
                   loading={loading}

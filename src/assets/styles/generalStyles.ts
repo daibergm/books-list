@@ -72,6 +72,9 @@ export default StyleSheet.create({
   h3: {
     fontSize: moderateScale(30, 0.3),
   },
+  upper: {
+    textTransform: 'uppercase',
+  },
   // Fonts
   defaultFont: {
     fontFamily: 'Mount Hills',

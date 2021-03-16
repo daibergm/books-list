@@ -1,18 +1,22 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // @Components
 import { ContainerComponent, Header } from '../../components/';
 
 // @Containers
 import { LoginContainer } from '../../containers/';
-// @Constants
-import { LOGIN_ROUTE } from '../../constants/';
+
+// @constants
+import { tKeys } from '../../constants/';
 
 const LoginScreen = () => {
+  const { t } = useTranslation();
+
   return (
     <ContainerComponent>
       <>
-        <Header title={LOGIN_ROUTE} />
+        <Header title={t(tKeys.loginLabel)} />
         <LoginContainer />
       </>
     </ContainerComponent>

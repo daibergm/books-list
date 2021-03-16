@@ -1,14 +1,19 @@
+import { TFunction } from 'react-i18next';
+
 // @Types
 import { AgeDropdownItem } from '../types/';
+
+// @Constants
+import { tKeys } from '../constants/';
 
 /**
  * Used to generate an array of ages
  * @returns {AgeDropdownItem[]}
  */
-export const ageGenerator = () => {
+export const ageGenerator = (t: TFunction<string>) => {
   const agesItems: AgeDropdownItem[] = [
     {
-      label: 'Age',
+      label: t(tKeys.agePlaceholder),
       value: '0',
     },
   ];

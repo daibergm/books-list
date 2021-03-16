@@ -1,5 +1,8 @@
 import { AppRegistry } from 'react-native';
 
+// @Utils
+import './src/utils/i18n';
+
 // @Screens
 import { RootScreen as App } from './src/screens/';
 
