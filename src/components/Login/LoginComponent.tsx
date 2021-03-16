@@ -1,23 +1,30 @@
 import React from 'react';
-import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, ScrollView } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { moderateScale } from 'react-native-size-matters';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 // @Assets
-import { GeneralStyles } from '../../assets/';
+import { GeneralStyles, Colors } from '../../assets/';
+import Styles from './styles';
 
 // @Types
 import { User } from '../../types/session';
+import { AgeDropdownItem } from '../../types/';
 
 // @Components
-import { Button, Input, Switch } from '../common';
+import { Button, Input, Switch, Text } from '../common';
+
+// @Utils
+import { ageGenerator } from '../../utils/';
 
 // Variables
 const initialValues = {
   name: '',
   lastName: '',
   email: '',
-  age: '',
+  age: '0',
   termsAndConditions: false,
 };
 
@@ -28,6 +35,9 @@ const validationSchema = yup.object().shape({
     .string()
     .required('The email is required')
     .email('Please enter a valid email'),
+  age: yup
+    .string()
+    .test('required', 'The age is required', (val: string) => val !== '0'),
   termsAndConditions: yup.bool().oneOf([true], 'Field must be checked'),
 });
 
@@ -41,6 +51,12 @@ function LoginComponent(props: Props) {
 
   const onSubmit = (values: User) => submitFunction(values);
 
+  const onHandlerPickerChange = (value: AgeDropdownItem, onChange: any) => {
+    onChange({
+      target: { value: value.value, name: 'age' },
+    });
+  };
+
   const onHandlerSwitchChange = (value: boolean, onChange: any) => {
     onChange({
       target: { value, name: 'termsAndConditions' },
@@ -48,7 +64,12 @@ function LoginComponent(props: Props) {
   };
 
   return (
-    <View style={[GeneralStyles.flex1]}>
+    <View
+      style={[
+        GeneralStyles.flex1,
+        GeneralStyles.flexRow,
+        GeneralStyles.alignCenter,
+      ]}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -67,41 +88,55 @@ function LoginComponent(props: Props) {
             alwaysBounceVertical={false}
             showsVerticalScrollIndicator={false}
             style={[GeneralStyles.width100, GeneralStyles.paddingH15]}
-            contentContainerStyle={[GeneralStyles.flex1]}
             keyboardShouldPersistTaps="handled">
-            <KeyboardAvoidingView
-              style={[GeneralStyles.flex1, GeneralStyles.justifyCenter]}
-              behavior={Platform.select({
-                ios: 'padding',
-                android: undefined,
-              })}>
-              <View style={GeneralStyles.marginT30}>
-                <Input
-                  value={values.name}
-                  placeholder="Name"
-                  errorMessage={touched.name ? errors.name : undefined}
-                  onChangeText={handleChange('name')}
-                  onBlur={() => setFieldTouched('name')}
-                />
-
-                <Input
-                  value={values.lastName}
-                  placeholder="Last name"
-                  errorMessage={touched.lastName ? errors.lastName : undefined}
-                  onChangeText={handleChange('lastName')}
-                  onBlur={() => setFieldTouched('lastName')}
-                />
-
-                <Input
-                  value={values.email}
-                  placeholder="Email"
-                  errorMessage={touched.email ? errors.email : undefined}
-                  onChangeText={handleChange('email')}
-                  onBlur={() => setFieldTouched('email')}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                />
-
+            <View style={[GeneralStyles.flex1]}>
+              <Input
+                value={values.name}
+                placeholder="Name"
+                errorMessage={touched.name ? errors.name : undefined}
+                onChangeText={handleChange('name')}
+                onBlur={() => setFieldTouched('name')}
+              />
+              <Input
+                value={values.lastName}
+                placeholder="Last name"
+                errorMessage={touched.lastName ? errors.lastName : undefined}
+                onChangeText={handleChange('lastName')}
+                onBlur={() => setFieldTouched('lastName')}
+              />
+              <Input
+                value={values.email}
+                placeholder="Email"
+                errorMessage={touched.email ? errors.email : undefined}
+                onChangeText={handleChange('email')}
+                onBlur={() => setFieldTouched('email')}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+              <DropDownPicker
+                labelStyle={[
+                  GeneralStyles.defaultFont,
+                  GeneralStyles.fontSize16,
+                  Styles.pickerLabel,
+                ]}
+                activeItemStyle={Styles.activeItem}
+                items={ageGenerator()}
+                defaultValue="0"
+                containerStyle={Styles.pickerContainerStyle}
+                style={[Styles.pickerStyle]}
+                dropDownStyle={Styles.pickerDropDown}
+                arrowColor={Colors.primary}
+                arrowSize={moderateScale(25, 0.3)}
+                onChangeItem={(value) =>
+                  onHandlerPickerChange(value, handleChange)
+                }
+              />
+              {errors.age && (
+                <Text style={Styles.pickerErrorLabel} danger>
+                  {errors.age}
+                </Text>
+              )}
+              <View style={GeneralStyles.marginT15}>
                 <Switch
                   label="Accept terms and conditions?"
                   value={values.termsAndConditions}
@@ -109,18 +144,17 @@ function LoginComponent(props: Props) {
                     onHandlerSwitchChange(value, handleChange)
                   }
                 />
-
-                <View style={[GeneralStyles.marginT30]}>
-                  <Button
-                    title="LOGIN"
-                    testID="loginButton"
-                    disabled={loading || !isValid || !dirty}
-                    onPress={handleSubmit}
-                    loading={loading}
-                  />
-                </View>
               </View>
-            </KeyboardAvoidingView>
+              <View style={[GeneralStyles.marginT30, GeneralStyles.paddingB15]}>
+                <Button
+                  title="LOGIN"
+                  testID="loginButton"
+                  disabled={loading || !isValid || !dirty}
+                  onPress={handleSubmit}
+                  loading={loading}
+                />
+              </View>
+            </View>
           </ScrollView>
         )}
       </Formik>

@@ -33,12 +33,18 @@ export default StyleSheet.create({
     maxHeight: '100%',
   },
   // Margins
+  marginT15: {
+    marginTop: moderateScale(15, 0.3),
+  },
   marginT30: {
     marginTop: moderateScale(30, 0.3),
   },
   // Paddings
   paddingH15: {
     paddingHorizontal: moderateScale(15, 0.3),
+  },
+  paddingB15: {
+    paddingBottom: moderateScale(15, 0.3),
   },
   // Buttons
   defaultButton: {
