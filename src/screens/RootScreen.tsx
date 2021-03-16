@@ -6,10 +6,16 @@ import { AppScreen } from './App/';
 // @Context
 import { SessionState } from '../context/';
 
+// @Components
+import { Alert } from '../components/';
+
 const RootScreen = () => {
   return (
     <SessionState>
-      <AppScreen />
+      <>
+        <AppScreen />
+        <Alert />
+      </>
     </SessionState>
   );
 };

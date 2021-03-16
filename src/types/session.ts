@@ -5,12 +5,22 @@ export type User = {
   age?: string;
 };
 
+export type Alert = {
+  message: string;
+  type: AlertMessageType;
+};
+
+export type AlertMessageType = 'danger' | 'success';
+
 export type Session = {
   user?: User;
   isAuthenticated?: boolean;
-  hasError?: boolean;
-  errorCode?: string;
+  hasAlert?: boolean;
+  alertCode?: string;
+  alertType?: AlertMessageType;
   isLoading?: boolean;
   onLogin?: (data: User) => void;
   onLogout?: () => void;
+  onShowAlert?: (data: Alert) => void;
+  onHideAlert?: () => void;
 };

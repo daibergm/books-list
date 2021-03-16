@@ -11,7 +11,7 @@ import SessionReducer from './SessionReducer';
 import { ActionTypes } from './types';
 
 // @types
-import { User } from '../../types/session';
+import { User, Alert } from '../../types/session';
 
 // @constants
 import { STORAGE_SESSION_KEY } from '../../constants/';
@@ -65,6 +65,7 @@ function SessionState({ children }: Props): JSX.Element {
           type: ActionTypes.LOGIN_SUCCESS,
           payload: {
             user: rs.data,
+            hasAlert: false,
           },
         });
 
@@ -74,8 +75,9 @@ function SessionState({ children }: Props): JSX.Element {
       dispatch({
         type: ActionTypes.LOGIN_FAILURE,
         payload: {
-          hasError: true,
-          errorCode: rs,
+          hasAlert: true,
+          alertCode: rs,
+          alertType: 'danger',
         },
       });
     }
@@ -92,8 +94,31 @@ function SessionState({ children }: Props): JSX.Element {
     });
   };
 
+  const onShowAlert = (data: Alert) => {
+    dispatch({
+      type: ActionTypes.SHOW_ALERT,
+      payload: {
+        hasAlert: true,
+        alertCode: data.message,
+        alertType: data.type,
+      },
+    });
+  };
+
+  const onHideAlert = () => {
+    dispatch({
+      type: ActionTypes.SHOW_ALERT,
+      payload: {
+        hasAlert: false,
+        alertCode: '',
+        alertType: 'success',
+      },
+    });
+  };
+
   return (
-    <SessionContext.Provider value={{ ...state, onLogin, onLogout }}>
+    <SessionContext.Provider
+      value={{ ...state, onLogin, onLogout, onShowAlert, onHideAlert }}>
       {children}
     </SessionContext.Provider>
   );

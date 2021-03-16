@@ -10,8 +10,8 @@ export const initialState: Session = {
     email: '',
   },
   isAuthenticated: false,
-  hasError: false,
-  errorCode: '',
+  hasAlert: false,
+  alertCode: '',
   isLoading: false,
 };
 
