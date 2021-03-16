@@ -10,7 +10,7 @@ import { GeneralStyles } from '../../assets/';
 import { User } from '../../types/session';
 
 // @Components
-import { Button, Input, Text } from '../common';
+import { Button, Input, Switch } from '../common';
 
 // Variables
 const initialValues = {
@@ -18,7 +18,7 @@ const initialValues = {
   lastName: '',
   email: '',
   age: '',
-  termsAndConditions: '',
+  termsAndConditions: false,
 };
 
 const validationSchema = yup.object().shape({
@@ -28,6 +28,7 @@ const validationSchema = yup.object().shape({
     .string()
     .required('The email is required')
     .email('Please enter a valid email'),
+  termsAndConditions: yup.bool().oneOf([true], 'Field must be checked'),
 });
 
 interface Props {
@@ -39,6 +40,12 @@ function LoginComponent(props: Props) {
   const { submitFunction, loading } = props;
 
   const onSubmit = (values: User) => submitFunction(values);
+
+  const onHandlerSwitchChange = (value: boolean, onChange: any) => {
+    onChange({
+      target: { value, name: 'termsAndConditions' },
+    });
+  };
 
   return (
     <View style={[GeneralStyles.flex1]}>
@@ -93,6 +100,14 @@ function LoginComponent(props: Props) {
                   onBlur={() => setFieldTouched('email')}
                   keyboardType="email-address"
                   autoCapitalize="none"
+                />
+
+                <Switch
+                  label="Accept terms and conditions?"
+                  value={values.termsAndConditions}
+                  onValueChange={(value) =>
+                    onHandlerSwitchChange(value, handleChange)
+                  }
                 />
 
                 <View style={[GeneralStyles.marginT30]}>
