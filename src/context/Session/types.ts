@@ -9,6 +9,8 @@ export enum ActionTypes {
   LOGOUT = 'LOGOUT',
   SHOW_ALERT = 'SHOW_ALERT',
   HIDE_ALERT = 'HIDE_ALERT',
+  SHOW_LOADING = 'SHOW_LOADING',
+  HIDE_LOADING = 'HIDE_LOADING',
 }
 
 export type Action = {
@@ -18,6 +20,8 @@ export type Action = {
     | ActionTypes.LOGIN_FAILURE
     | ActionTypes.LOGOUT
     | ActionTypes.SHOW_ALERT
-    | ActionTypes.HIDE_ALERT;
+    | ActionTypes.HIDE_ALERT
+    | ActionTypes.SHOW_LOADING
+    | ActionTypes.HIDE_LOADING;
   payload?: User | Alert;
 };

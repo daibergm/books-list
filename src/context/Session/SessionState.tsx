@@ -96,9 +96,25 @@ const SessionState = ({ children }: Props) => {
     dispatch({ type: ActionTypes.HIDE_ALERT });
   };
 
+  const onShowLoading = () => {
+    dispatch({ type: ActionTypes.SHOW_LOADING });
+  };
+
+  const onHideLoading = () => {
+    dispatch({ type: ActionTypes.HIDE_LOADING });
+  };
+
   return (
     <SessionContext.Provider
-      value={{ ...state, onLogin, onLogout, onShowAlert, onHideAlert }}>
+      value={{
+        ...state,
+        onLogin,
+        onLogout,
+        onShowAlert,
+        onHideAlert,
+        onShowLoading,
+        onHideLoading,
+      }}>
       {children}
     </SessionContext.Provider>
   );

@@ -60,6 +60,24 @@ const SessionReducer = (state: State = initialState, action: Action) => {
       return newState;
     }
 
+    case ActionTypes.SHOW_LOADING: {
+      const newState: State = {
+        ...state,
+        globalLoading: true,
+      };
+
+      return newState;
+    }
+
+    case ActionTypes.HIDE_LOADING: {
+      const newState: State = {
+        ...state,
+        globalLoading: false,
+      };
+
+      return newState;
+    }
+
     default: {
       return state;
     }

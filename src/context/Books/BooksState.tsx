@@ -19,13 +19,16 @@ type Props = {
 
 const BooksState = ({ children }: Props) => {
   const [state, dispatch] = useReducer(BooksReducer, initialState);
-  const { onShowAlert } = useContext(SessionContext);
+  const { onShowAlert, onShowLoading, onHideLoading } = useContext(
+    SessionContext,
+  );
 
   /**
    * Use to get all books
    */
   const onGetBooks = async (): Promise<void> => {
     if (!state.isLoading) {
+      onShowLoading && onShowLoading();
       dispatch({ type: ActionTypes.GET_BOOKS_ATTEMPT, payload: [] });
       const rs = await getBooks();
 
@@ -34,20 +37,20 @@ const BooksState = ({ children }: Props) => {
           type: ActionTypes.GET_BOOKS_SUCCESS,
           payload: rs.data,
         });
+      } else {
+        dispatch({
+          type: ActionTypes.GET_BOOKS_FAILURE,
+          payload: [],
+        });
 
-        return;
+        onShowAlert &&
+          onShowAlert({
+            message: rs,
+            type: 'danger',
+          });
       }
 
-      dispatch({
-        type: ActionTypes.GET_BOOKS_FAILURE,
-        payload: [],
-      });
-
-      onShowAlert &&
-        onShowAlert({
-          message: rs,
-          type: 'danger',
-        });
+      onHideLoading && onHideLoading();
     }
   };
 

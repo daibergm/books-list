@@ -22,7 +22,7 @@ const LibraryWithLoading = WithLoading(LibraryComponent);
 
 const LibraryContainer = () => {
   const { books, onGetBooks, onSetBooks } = useContext(BooksContext);
-  const { onShowAlert } = useContext(SessionContext);
+  const { onShowAlert, globalLoading } = useContext(SessionContext);
   const [showInput, setShowInput] = useState(false);
   const { t } = useTranslation();
 
@@ -61,7 +61,7 @@ const LibraryContainer = () => {
         showInput={showInput}
         onChange={onHandlerChange}
       />
-      <LibraryWithLoading isLoading={true} books={books} />
+      <LibraryWithLoading isLoading={globalLoading as boolean} books={books} />
     </>
   );
 };
