@@ -7,13 +7,24 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // @Screens
 import { LoginScreen } from '../Login/';
-import { LibraryScreen } from '../Library';
+import { LibraryScreen } from '../Library/';
+import { WishListScreen } from '../WishList/';
+import { AddNewScreen } from '../AddNew/';
+import { RentalsScreen } from '../Rentals/';
+import { SettingsScreen } from '../Settings/';
 
 // @Context
 import { SessionContext } from '../../context/';
 
 // @Constants
-import { LOGIN_ROUTE, LIBRARY_ROUTE } from '../../constants/';
+import {
+  LOGIN_ROUTE,
+  LIBRARY_ROUTE,
+  WISHLIST_ROUTE,
+  ADD_NEW_ROUTE,
+  RENTALS_ROUTE,
+  SETTINGS_ROUTE,
+} from '../../constants/';
 
 // @context
 import { BooksState } from '../../context/';
@@ -51,10 +62,10 @@ const AppScreen = () => {
             {isAuthenticated && (
               <Tab.Navigator initialRouteName={LIBRARY_ROUTE}>
                 <Tab.Screen name={LIBRARY_ROUTE} component={LibraryStack} />
-                <Tab.Screen name="Wishlist" component={LibraryScreen} />
-                <Tab.Screen name="Add New" component={LibraryScreen} />
-                <Tab.Screen name="Rentals" component={LibraryScreen} />
-                <Tab.Screen name="Settings" component={LibraryScreen} />
+                <Tab.Screen name={WISHLIST_ROUTE} component={WishListScreen} />
+                <Tab.Screen name={ADD_NEW_ROUTE} component={AddNewScreen} />
+                <Tab.Screen name={RENTALS_ROUTE} component={RentalsScreen} />
+                <Tab.Screen name={SETTINGS_ROUTE} component={SettingsScreen} />
               </Tab.Navigator>
             )}
           </>

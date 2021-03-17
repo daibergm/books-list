@@ -13,4 +13,14 @@ export const tKeys = {
   termsAndConditionsLabel: 'termsAndConditionsLabel',
   // Library screen
   libraryLabel: 'libraryLabel',
+  // WishList screen
+  wishListLabel: 'wishListLabel',
+  // AddNew screen
+  addNewLabel: 'addNewLabel',
+  // Rentals screen
+  rentalsLabel: 'rentalsLabel',
+  // Settings screen
+  settingsLabel: 'settingsLabel',
+  // Header
+  searchLabel: 'searchLabel',
 };

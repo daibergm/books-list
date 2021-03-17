@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ImageBackground } from 'react-native';
 import { Header, HeaderProps, Icon } from 'react-native-elements';
 import { moderateScale } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 // @Assets
 import Styles from './styles';
@@ -10,6 +11,9 @@ import { Colors, GeneralStyles } from '../../../assets/';
 // @Components
 import { Text } from '../Text/';
 import { Input } from '../Input/';
+
+// @Constants
+import { tKeys } from '../../../constants/';
 
 interface Props extends HeaderProps {
   hasLeftIcon?: boolean;
@@ -44,6 +48,7 @@ const HeaderComponent = (props: Props) => {
     onChange,
     title,
   } = props;
+  const { t } = useTranslation();
 
   const lefComponent = () => (
     <Icon
@@ -89,7 +94,7 @@ const HeaderComponent = (props: Props) => {
     <Input
       value={inputValue}
       onChangeText={onHandlerChange}
-      placeholder="Search"
+      placeholder={t(tKeys.searchLabel)}
       style={Styles.input}
       placeholderTextColor={Colors.opacityWhite}
     />

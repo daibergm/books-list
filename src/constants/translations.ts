@@ -15,10 +15,25 @@ const resources = {
       termsAndConditionsLabel: 'Accept terms and conditions?',
       // Library screen
       libraryLabel: 'Library',
+      // WishList screen
+      wishListLabel: 'Wish list',
+      // AddNew screen
+      addNewLabel: 'Add new',
+      // Rentals screen
+      rentalsLabel: 'Rentals',
+      // Settings screen
+      settingsLabel: 'Settings',
+      // Header
+      searchLabel: 'Search',
       // Alerts
       'Network Error': 'Internal server error.',
       // General
       loading: 'Loading...',
+      // Routes
+      WISHLIST: 'Wishlist',
+      ADD_NEW: 'Add New',
+      RENTALS: 'Rentals',
+      SETTINGS: 'Settings',
     },
   },
   es: {
@@ -37,10 +52,25 @@ const resources = {
       termsAndConditionsLabel: '¿Acceptas los terminos y condiciones?',
       // Library screen
       libraryLabel: 'Librería',
+      // WishList screen
+      wishListLabel: 'Lista de deseos',
+      // AddNew screen
+      addNewLabel: 'Agregar nuevo',
+      // Rentals screen
+      rentalsLabel: 'Alquileres',
+      // Settings screen
+      settingsLabel: 'Configuración',
+      // Header
+      searchLabel: 'Buscar',
       // Alerts
       'Network Error': 'Problemas internos con el servidor.',
       // General
       loading: 'Cargando...',
+      // Routes
+      WISHLIST: 'Deseos',
+      ADD_NEW: 'Nuevo',
+      RENTALS: 'Alquileres',
+      SETTINGS: 'Configuración',
     },
   },
 };
