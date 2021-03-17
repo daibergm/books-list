@@ -21,7 +21,7 @@ type Props = {
   children: JSX.Element;
 };
 
-function SessionState({ children }: Props): JSX.Element {
+const SessionState = ({ children }: Props) => {
   const [state, dispatch] = useReducer(SessionReducer, initialState);
 
   useEffect(() => {
@@ -102,6 +102,6 @@ function SessionState({ children }: Props): JSX.Element {
       {children}
     </SessionContext.Provider>
   );
-}
+};
 
 export default SessionState;

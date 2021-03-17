@@ -52,25 +52,7 @@ This is a basic books list app using ReactNative and TypeScript
 
 ### IOS
 
-  - Clean project:
-    ```
-    yarn clean:ios
-    # or
-    npm run clean:ios
-    ```
-  - Start metro:
-    ```
-    yarn start
-    # or
-    npm run start
-    ```
-  - Connect your device or use a IOS simulator
-  - Build debug(by default this command build the app to the iPhone X, you can change that in the package.json):
-    ```
-    yarn ios
-    # or
-    npm run ios
-    ```
+  - For the moment I couldn't test this project in IOS, because I don't have a mac :(
 
 ## Commands
 
@@ -85,6 +67,12 @@ This is a basic books list app using ReactNative and TypeScript
     yarn lint
     # or
     npm run lint
+    ```
+  - To check ts:
+    ```
+    yarn check-ts
+    # or
+    npm run check-ts
     ```
   - To run tests:
     ```

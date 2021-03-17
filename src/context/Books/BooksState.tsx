@@ -17,7 +17,7 @@ type Props = {
   children: JSX.Element;
 };
 
-function BooksState({ children }: Props): JSX.Element {
+const BooksState = ({ children }: Props) => {
   const [state, dispatch] = useReducer(BooksReducer, initialState);
   const { onShowAlert } = useContext(SessionContext);
 
@@ -67,6 +67,6 @@ function BooksState({ children }: Props): JSX.Element {
       {children}
     </BooksContext.Provider>
   );
-}
+};
 
 export default BooksState;

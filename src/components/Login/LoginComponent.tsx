@@ -45,7 +45,7 @@ interface Props {
   loading: boolean;
 }
 
-function LoginComponent(props: Props) {
+const LoginComponent = (props: Props) => {
   const { submitFunction, loading } = props;
   const { t } = useTranslation();
 
@@ -166,6 +166,6 @@ function LoginComponent(props: Props) {
       </Formik>
     </View>
   );
-}
+};
 
 export default LoginComponent;
