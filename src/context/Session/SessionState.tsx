@@ -11,7 +11,8 @@ import SessionReducer from './SessionReducer';
 import { ActionTypes } from './types';
 
 // @types
-import { User, Alert } from '../../types/session';
+import { User } from '../../types/user';
+import { Alert } from '../../types/alert';
 
 // @constants
 import { STORAGE_SESSION_KEY } from '../../constants/';
@@ -25,10 +26,7 @@ function SessionState({ children }: Props): JSX.Element {
 
   useEffect(() => {
     const validateSession = async () => {
-      dispatch({
-        type: ActionTypes.LOGIN_ATTEMPT,
-        payload: {},
-      });
+      dispatch({ type: ActionTypes.LOGIN_ATTEMPT });
       const session = await AsyncStorage.getItem(STORAGE_SESSION_KEY);
 
       if (session) {
@@ -37,10 +35,7 @@ function SessionState({ children }: Props): JSX.Element {
           payload: JSON.parse(session),
         });
       } else {
-        dispatch({
-          type: ActionTypes.LOGOUT,
-          payload: {},
-        });
+        dispatch({ type: ActionTypes.LOGOUT });
       }
     };
     validateSession();
@@ -52,7 +47,7 @@ function SessionState({ children }: Props): JSX.Element {
    */
   const onLogin = async (data: User): Promise<void> => {
     if (!state.isLoading) {
-      dispatch({ type: ActionTypes.LOGIN_ATTEMPT, payload: {} });
+      dispatch({ type: ActionTypes.LOGIN_ATTEMPT });
       const rs = await login(data);
 
       if (!isEmpty(rs.data)) {
@@ -63,10 +58,7 @@ function SessionState({ children }: Props): JSX.Element {
 
         dispatch({
           type: ActionTypes.LOGIN_SUCCESS,
-          payload: {
-            user: rs.data,
-            hasAlert: false,
-          },
+          payload: rs.data,
         });
 
         return;
@@ -75,9 +67,8 @@ function SessionState({ children }: Props): JSX.Element {
       dispatch({
         type: ActionTypes.LOGIN_FAILURE,
         payload: {
-          hasAlert: true,
-          alertCode: rs,
-          alertType: 'danger',
+          message: rs,
+          type: 'danger',
         },
       });
     }
@@ -88,32 +79,21 @@ function SessionState({ children }: Props): JSX.Element {
    */
   const onLogout = async (): Promise<void> => {
     await logout();
-    dispatch({
-      type: ActionTypes.LOGOUT,
-      payload: {},
-    });
+    dispatch({ type: ActionTypes.LOGOUT });
   };
 
   const onShowAlert = (data: Alert) => {
     dispatch({
       type: ActionTypes.SHOW_ALERT,
       payload: {
-        hasAlert: true,
-        alertCode: data.message,
-        alertType: data.type,
+        message: data.message,
+        type: data.type,
       },
     });
   };
 
   const onHideAlert = () => {
-    dispatch({
-      type: ActionTypes.SHOW_ALERT,
-      payload: {
-        hasAlert: false,
-        alertCode: '',
-        alertType: 'success',
-      },
-    });
+    dispatch({ type: ActionTypes.HIDE_ALERT });
   };
 
   return (

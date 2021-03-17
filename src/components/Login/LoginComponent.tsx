@@ -11,7 +11,7 @@ import { GeneralStyles, Colors } from '../../assets/';
 import Styles from './styles';
 
 // @Types
-import { User } from '../../types/session';
+import { User } from '../../types/user';
 import { AgeDropdownItem } from '../../types/';
 
 // @Components

@@ -1,5 +1,6 @@
 // @Types
-import { Session } from '../../types/session';
+import { User } from '../../types/user';
+import { Alert } from '../../types/alert';
 
 export enum ActionTypes {
   LOGIN_ATTEMPT = 'LOGIN_ATTEMPT',
@@ -18,5 +19,5 @@ export type Action = {
     | ActionTypes.LOGOUT
     | ActionTypes.SHOW_ALERT
     | ActionTypes.HIDE_ALERT;
-  payload: Session;
+  payload?: User | Alert;
 };

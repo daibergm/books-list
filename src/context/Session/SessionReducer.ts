@@ -1,14 +1,15 @@
 // @Types
-import { Session } from '../../types/session';
+import { User } from '../../types/user';
+import { Alert } from '../../types/alert';
 
 // @Context
-import { initialState } from './SessionContext';
+import { initialState, State } from './SessionContext';
 import { Action, ActionTypes } from './types';
 
-const SessionReducer = (state: Session = initialState, action: Action) => {
+const SessionReducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
     case ActionTypes.LOGIN_ATTEMPT: {
-      const newState: Session = {
+      const newState: State = {
         ...state,
         isLoading: true,
       };
@@ -17,29 +18,43 @@ const SessionReducer = (state: Session = initialState, action: Action) => {
     }
 
     case ActionTypes.LOGIN_SUCCESS: {
-      const newState: Session = {
+      const newState: State = {
         ...state,
-        ...action.payload,
+        user: action.payload as User,
         isLoading: false,
         isAuthenticated: true,
+        hasAlert: false,
       };
 
       return newState;
     }
 
-    case ActionTypes.LOGIN_FAILURE:
-    case ActionTypes.LOGOUT: {
+    case ActionTypes.LOGIN_FAILURE: {
       return {
         ...initialState,
-        ...action.payload,
+        hasAlert: true,
+        alert: action.payload as Alert,
       };
     }
 
-    case ActionTypes.SHOW_ALERT:
-    case ActionTypes.HIDE_ALERT: {
-      const newState: Session = {
+    case ActionTypes.LOGOUT: {
+      return initialState;
+    }
+
+    case ActionTypes.SHOW_ALERT: {
+      const newState: State = {
         ...state,
-        ...action.payload,
+        hasAlert: true,
+        alert: action.payload as Alert,
+      };
+
+      return newState;
+    }
+
+    case ActionTypes.HIDE_ALERT: {
+      const newState: State = {
+        ...state,
+        hasAlert: false,
       };
 
       return newState;

@@ -7,7 +7,7 @@ import { SessionContext } from '../../context/';
 import { LoginComponent } from '../../components/';
 
 // @types
-import { User } from '../../types/session';
+import { User } from '../../types/user';
 
 const LoginContainer: React.FC = () => {
   const { onLogin, isLoading } = useContext(SessionContext);

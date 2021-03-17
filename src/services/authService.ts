@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { api } from './config';
 
 // @Types
-import { User } from '../types/session';
+import { User } from '../types/user';
 
 // @constants
 import { STORAGE_SESSION_KEY } from '../constants/';

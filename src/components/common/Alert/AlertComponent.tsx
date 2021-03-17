@@ -14,14 +14,12 @@ import Styles from './styles';
 import { SessionContext } from '../../../context/';
 
 const AlertComponent = () => {
-  const { hasAlert, alertCode, alertType, onHideAlert } = useContext(
-    SessionContext,
-  );
+  const { hasAlert, alert, onHideAlert } = useContext(SessionContext);
   const { t } = useTranslation();
 
   useEffect(() => {
     const getBC = (): string => {
-      switch (alertType) {
+      switch (alert?.type) {
         case 'danger': {
           return Colors.danger;
         }
@@ -39,15 +37,15 @@ const AlertComponent = () => {
     if (hasAlert) {
       showMessage({
         message: '',
-        description: t(alertCode as string),
-        type: alertType as MessageType,
+        description: t(alert?.message as string),
+        type: alert?.type as MessageType,
         autoHide: false,
         backgroundColor: getBC(),
       });
     } else {
       hideMessage();
     }
-  }, [alertCode, alertType, hasAlert, t]);
+  }, [alert, hasAlert, t]);
 
   const onHandlerPress = () => {
     onHideAlert && onHideAlert();

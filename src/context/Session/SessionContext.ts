@@ -1,20 +1,23 @@
 import { createContext, Context } from 'react';
 
 // @Types
-import { Session } from '../../types/session';
+import { User } from '../../types/user';
+import { Alert } from '../../types/alert';
 
-export const initialState: Session = {
-  user: {
-    name: '',
-    lastName: '',
-    email: '',
-  },
-  isAuthenticated: false,
-  hasAlert: false,
-  alertCode: '',
-  isLoading: false,
+export type State = {
+  user?: User;
+  alert?: Alert;
+  isAuthenticated?: boolean;
+  hasAlert?: boolean;
+  isLoading?: boolean;
+  onLogin?: (data: User) => void;
+  onLogout?: () => void;
+  onShowAlert?: (data: Alert) => void;
+  onHideAlert?: () => void;
 };
 
-const SessionContext: Context<Session> = createContext(initialState);
+export const initialState: State = {};
+
+const SessionContext: Context<State> = createContext(initialState);
 
 export default SessionContext;
