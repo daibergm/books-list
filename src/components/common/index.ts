@@ -5,5 +5,15 @@ import { Text } from './Text/';
 import { Header } from './Header/';
 import { Switch } from './Switch/';
 import { Alert } from './Alert/';
+import { ListItem } from './ListItem/';
 
-export { ContainerComponent, Button, Input, Text, Header, Switch, Alert };
+export {
+  ContainerComponent,
+  Button,
+  Input,
+  Text,
+  Header,
+  Switch,
+  Alert,
+  ListItem,
+};

@@ -7,17 +7,28 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // @Screens
 import { LoginScreen } from '../Login/';
-import { HomeScreen } from '../Home/';
+import { LibraryScreen } from '../Library';
 
 // @Context
 import { SessionContext } from '../../context/';
 
 // @Constants
-import { LOGIN_ROUTE, HOME_ROUTE } from '../../constants/';
+import { LOGIN_ROUTE, LIBRARY_ROUTE } from '../../constants/';
+
+// @context
+import { BooksState } from '../../context/';
 
 // Variables
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const LibraryStack = () => (
+  <BooksState>
+    <Stack.Navigator headerMode="none" initialRouteName={LIBRARY_ROUTE}>
+      <Stack.Screen name={LIBRARY_ROUTE} component={LibraryScreen} />
+    </Stack.Navigator>
+  </BooksState>
+);
 
 const AppScreen = () => {
   const { isAuthenticated } = useContext(SessionContext);
@@ -38,8 +49,12 @@ const AppScreen = () => {
               </Stack.Navigator>
             )}
             {isAuthenticated && (
-              <Tab.Navigator initialRouteName={HOME_ROUTE}>
-                <Tab.Screen name={HOME_ROUTE} component={HomeScreen} />
+              <Tab.Navigator initialRouteName={LIBRARY_ROUTE}>
+                <Tab.Screen name={LIBRARY_ROUTE} component={LibraryStack} />
+                <Tab.Screen name="Wishlist" component={LibraryScreen} />
+                <Tab.Screen name="Add New" component={LibraryScreen} />
+                <Tab.Screen name="Rentals" component={LibraryScreen} />
+                <Tab.Screen name="Settings" component={LibraryScreen} />
               </Tab.Navigator>
             )}
           </>
