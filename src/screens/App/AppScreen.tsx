@@ -40,6 +40,10 @@ const AppScreen = () => {
             {isAuthenticated && (
               <Tab.Navigator initialRouteName={LIBRARY_ROUTE}>
                 <Tab.Screen name={LIBRARY_ROUTE} component={LibraryScreen} />
+                <Tab.Screen name="Wishlist" component={LibraryScreen} />
+                <Tab.Screen name="Add New" component={LibraryScreen} />
+                <Tab.Screen name="Rentals" component={LibraryScreen} />
+                <Tab.Screen name="Settings" component={LibraryScreen} />
               </Tab.Navigator>
             )}
           </>

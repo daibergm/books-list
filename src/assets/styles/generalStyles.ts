@@ -49,6 +49,12 @@ export default StyleSheet.create({
   paddingB15: {
     paddingBottom: moderateScale(15, 0.3),
   },
+  paddingB25: {
+    paddingBottom: moderateScale(25, 0.3),
+  },
+  paddingT15: {
+    paddingTop: moderateScale(15, 0.3),
+  },
   // Buttons
   defaultButton: {
     height: moderateScale(40, 0.3),

@@ -1,34 +1,15 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 
 // @Components
-import { ContainerComponent, Header } from '../../components';
+import { ContainerComponent } from '../../components';
 
-// @constants
-import { tKeys } from '../../constants/';
+// @Containers
+import { LibraryContainer } from '../../containers/';
 
 const LibraryScreen = () => {
-  const [showInput, setShowInput] = useState(false);
-  const { t } = useTranslation();
-
-  const onHandlerRightPress = () => setShowInput(!showInput);
-
-  const onHandlerChange = (value: string) => {
-    alert(value);
-  };
-
   return (
     <ContainerComponent>
-      <>
-        <Header
-          hasLeftIcon
-          hasRightIcon
-          rightIconPress={onHandlerRightPress}
-          title={t(tKeys.libraryLabel)}
-          showInput={showInput}
-          onChange={onHandlerChange}
-        />
-      </>
+      <LibraryContainer />
     </ContainerComponent>
   );
 };
