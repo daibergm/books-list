@@ -10,6 +10,9 @@ import BooksReducer from './BooksReducer';
 import { ActionTypes } from './types';
 import { SessionContext } from '../Session/';
 
+// @Types
+import { Book } from '../../types/book';
+
 type Props = {
   children: JSX.Element;
 };
@@ -48,8 +51,19 @@ function BooksState({ children }: Props): JSX.Element {
     }
   };
 
+  /**
+   * Use to set books list into the state
+   * @param {Book[]} books List of books
+   */
+  const onSetBooks = (books: Book[]) => {
+    dispatch({
+      type: ActionTypes.GET_BOOKS_SUCCESS,
+      payload: books,
+    });
+  };
+
   return (
-    <BooksContext.Provider value={{ ...state, onGetBooks }}>
+    <BooksContext.Provider value={{ ...state, onGetBooks, onSetBooks }}>
       {children}
     </BooksContext.Provider>
   );

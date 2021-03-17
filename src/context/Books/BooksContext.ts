@@ -8,6 +8,7 @@ export type State = {
   book?: Book;
   isLoading: boolean;
   onGetBooks?: () => void;
+  onSetBooks?: (books: Book[]) => void;
   onGetBook?: () => void;
 };
 
