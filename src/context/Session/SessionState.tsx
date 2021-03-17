@@ -21,7 +21,7 @@ type Props = {
   children: JSX.Element;
 };
 
-function SessionState({ children }: Props): JSX.Element {
+const SessionState = ({ children }: Props) => {
   const [state, dispatch] = useReducer(SessionReducer, initialState);
 
   useEffect(() => {
@@ -96,12 +96,28 @@ function SessionState({ children }: Props): JSX.Element {
     dispatch({ type: ActionTypes.HIDE_ALERT });
   };
 
+  const onShowLoading = () => {
+    dispatch({ type: ActionTypes.SHOW_LOADING });
+  };
+
+  const onHideLoading = () => {
+    dispatch({ type: ActionTypes.HIDE_LOADING });
+  };
+
   return (
     <SessionContext.Provider
-      value={{ ...state, onLogin, onLogout, onShowAlert, onHideAlert }}>
+      value={{
+        ...state,
+        onLogin,
+        onLogout,
+        onShowAlert,
+        onHideAlert,
+        onShowLoading,
+        onHideLoading,
+      }}>
       {children}
     </SessionContext.Provider>
   );
-}
+};
 
 export default SessionState;

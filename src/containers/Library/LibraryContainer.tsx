@@ -15,9 +15,14 @@ import { BooksContext, SessionContext } from '../../context/';
 // @Services
 import { getBooks } from '../../services/';
 
-const LibraryContainer: React.FC = () => {
+// @Hoc
+import WithLoading from '../../hoc/WithLoading';
+
+const LibraryWithLoading = WithLoading(LibraryComponent);
+
+const LibraryContainer = () => {
   const { books, onGetBooks, onSetBooks } = useContext(BooksContext);
-  const { onShowAlert } = useContext(SessionContext);
+  const { onShowAlert, globalLoading } = useContext(SessionContext);
   const [showInput, setShowInput] = useState(false);
   const { t } = useTranslation();
 
@@ -56,7 +61,7 @@ const LibraryContainer: React.FC = () => {
         showInput={showInput}
         onChange={onHandlerChange}
       />
-      <LibraryComponent books={books} />
+      <LibraryWithLoading isLoading={globalLoading as boolean} books={books} />
     </>
   );
 };

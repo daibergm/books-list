@@ -14,7 +14,7 @@ type Props = {
   books: Book[];
 };
 
-function LibraryComponent({ books }: Props) {
+const LibraryComponent = ({ books }: Props) => {
   const renderItem = ({ item }: { item: Book }) => {
     return (
       <ListItem
@@ -37,6 +37,6 @@ function LibraryComponent({ books }: Props) {
       showsVerticalScrollIndicator={false}
     />
   );
-}
+};
 
 export default LibraryComponent;

@@ -17,15 +17,18 @@ type Props = {
   children: JSX.Element;
 };
 
-function BooksState({ children }: Props): JSX.Element {
+const BooksState = ({ children }: Props) => {
   const [state, dispatch] = useReducer(BooksReducer, initialState);
-  const { onShowAlert } = useContext(SessionContext);
+  const { onShowAlert, onShowLoading, onHideLoading } = useContext(
+    SessionContext,
+  );
 
   /**
    * Use to get all books
    */
   const onGetBooks = async (): Promise<void> => {
     if (!state.isLoading) {
+      onShowLoading && onShowLoading();
       dispatch({ type: ActionTypes.GET_BOOKS_ATTEMPT, payload: [] });
       const rs = await getBooks();
 
@@ -34,20 +37,20 @@ function BooksState({ children }: Props): JSX.Element {
           type: ActionTypes.GET_BOOKS_SUCCESS,
           payload: rs.data,
         });
+      } else {
+        dispatch({
+          type: ActionTypes.GET_BOOKS_FAILURE,
+          payload: [],
+        });
 
-        return;
+        onShowAlert &&
+          onShowAlert({
+            message: rs,
+            type: 'danger',
+          });
       }
 
-      dispatch({
-        type: ActionTypes.GET_BOOKS_FAILURE,
-        payload: [],
-      });
-
-      onShowAlert &&
-        onShowAlert({
-          message: rs,
-          type: 'danger',
-        });
+      onHideLoading && onHideLoading();
     }
   };
 
@@ -67,6 +70,6 @@ function BooksState({ children }: Props): JSX.Element {
       {children}
     </BooksContext.Provider>
   );
-}
+};
 
 export default BooksState;

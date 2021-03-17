@@ -10,10 +10,13 @@ export type State = {
   isAuthenticated?: boolean;
   hasAlert?: boolean;
   isLoading?: boolean;
+  globalLoading?: boolean;
   onLogin?: (data: User) => void;
   onLogout?: () => void;
   onShowAlert?: (data: Alert) => void;
   onHideAlert?: () => void;
+  onShowLoading?: () => void;
+  onHideLoading?: () => void;
 };
 
 export const initialState: State = {};

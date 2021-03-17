@@ -17,6 +17,8 @@ const resources = {
       libraryLabel: 'Library',
       // Alerts
       'Network Error': 'Internal server error.',
+      // General
+      loading: 'Loading...',
     },
   },
   es: {
@@ -37,6 +39,8 @@ const resources = {
       libraryLabel: 'Librería',
       // Alerts
       'Network Error': 'Problemas internos con el servidor.',
+      // General
+      loading: 'Cargando...',
     },
   },
 };
