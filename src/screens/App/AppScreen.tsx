@@ -15,9 +15,20 @@ import { SessionContext } from '../../context/';
 // @Constants
 import { LOGIN_ROUTE, LIBRARY_ROUTE } from '../../constants/';
 
+// @context
+import { BooksState } from '../../context/';
+
 // Variables
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const LibraryStack = () => (
+  <BooksState>
+    <Stack.Navigator headerMode="none" initialRouteName={LIBRARY_ROUTE}>
+      <Stack.Screen name={LIBRARY_ROUTE} component={LibraryScreen} />
+    </Stack.Navigator>
+  </BooksState>
+);
 
 const AppScreen = () => {
   const { isAuthenticated } = useContext(SessionContext);
@@ -39,7 +50,7 @@ const AppScreen = () => {
             )}
             {isAuthenticated && (
               <Tab.Navigator initialRouteName={LIBRARY_ROUTE}>
-                <Tab.Screen name={LIBRARY_ROUTE} component={LibraryScreen} />
+                <Tab.Screen name={LIBRARY_ROUTE} component={LibraryStack} />
                 <Tab.Screen name="Wishlist" component={LibraryScreen} />
                 <Tab.Screen name="Add New" component={LibraryScreen} />
                 <Tab.Screen name="Rentals" component={LibraryScreen} />
