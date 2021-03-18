@@ -11,6 +11,7 @@ import { WishListScreen } from '../WishList/';
 import { AddNewScreen } from '../AddNew/';
 import { RentalsScreen } from '../Rentals/';
 import { SettingsScreen } from '../Settings/';
+import { BookDetailScreen } from '../BookDetail';
 
 // @Context
 import { SessionContext } from '../../context/';
@@ -23,6 +24,7 @@ import {
   ADD_NEW_ROUTE,
   RENTALS_ROUTE,
   SETTINGS_ROUTE,
+  BOOK_DETAIL_ROUTE,
 } from '../../constants/';
 
 // @context
@@ -31,14 +33,18 @@ import { BooksState } from '../../context/';
 // @Components
 import { TabIcon, TabText } from './TabComponents';
 
+// @Types
+import { LibraryStackParamList } from '../../types/';
+
 // Variables
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<LibraryStackParamList>();
 const Tab = createBottomTabNavigator();
 
 const LibraryStack = () => (
   <BooksState>
     <Stack.Navigator headerMode="none" initialRouteName={LIBRARY_ROUTE}>
       <Stack.Screen name={LIBRARY_ROUTE} component={LibraryScreen} />
+      <Stack.Screen name={BOOK_DETAIL_ROUTE} component={BookDetailScreen} />
     </Stack.Navigator>
   </BooksState>
 );

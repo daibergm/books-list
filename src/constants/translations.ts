@@ -26,6 +26,12 @@ const resources = {
       logoutBtn: 'Logout',
       languageBtn: 'Change Language',
       languageLabel: 'Actual language: English',
+      // BookDetail screen
+      availableLabel: 'Available',
+      addBtn: 'ADD TO WISHLIST',
+      rentBtn: 'RENT',
+      suggestedLabel: 'Suggested Books',
+      commentsLabel: 'View All',
       // Header
       searchLabel: 'Search',
       // Alerts
@@ -38,6 +44,7 @@ const resources = {
       ADD_NEW: 'Add New',
       RENTALS: 'Rentals',
       SETTINGS: 'Settings',
+      BOOK_DETAIL: 'Book Detail',
     },
   },
   es: {
@@ -67,6 +74,12 @@ const resources = {
       logoutBtn: 'Cerrar Sesión',
       languageBtn: 'Cambiar Idioma',
       languageLabel: 'Idioma actual: Español',
+      // BookDetail screen
+      availableLabel: 'Disponible',
+      addBtn: 'AGREGAR A DESEOS',
+      rentBtn: 'ALQUILAR',
+      suggestedLabel: 'Libros Sugeridos',
+      commentsLabel: 'Ver todos',
       // Header
       searchLabel: 'Buscar',
       // Alerts
@@ -79,6 +92,7 @@ const resources = {
       RENTALS: 'Alquileres',
       SETTINGS: 'Configuración',
       LIBRARY: 'Librería',
+      BOOK_DETAIL: 'Detalle del Libro',
     },
   },
 };

@@ -2,7 +2,7 @@ import React, { useReducer, useContext } from 'react';
 import { isEmpty } from 'lodash';
 
 // @services
-import { getBooks } from '../../services';
+import { getBooks, getBook } from '../../services';
 
 // @Context
 import BooksContext, { initialState } from './BooksContext';
@@ -55,6 +55,38 @@ const BooksState = ({ children }: Props) => {
   };
 
   /**
+   * Use to get book by id
+   * @param {number} id Book id
+   */
+  const onGetBook = async (id: number): Promise<void> => {
+    if (!state.isLoading) {
+      onShowLoading && onShowLoading();
+      dispatch({ type: ActionTypes.GET_BOOK_ATTEMPT, payload: [] });
+      const rs = await getBook(id);
+
+      if (!isEmpty(rs.data)) {
+        dispatch({
+          type: ActionTypes.GET_BOOK_SUCCESS,
+          payload: rs.data,
+        });
+      } else {
+        dispatch({
+          type: ActionTypes.GET_BOOK_FAILURE,
+          payload: [],
+        });
+
+        onShowAlert &&
+          onShowAlert({
+            message: rs,
+            type: 'danger',
+          });
+      }
+
+      onHideLoading && onHideLoading();
+    }
+  };
+
+  /**
    * Use to set books list into the state
    * @param {Book[]} books List of books
    */
@@ -66,7 +98,8 @@ const BooksState = ({ children }: Props) => {
   };
 
   return (
-    <BooksContext.Provider value={{ ...state, onGetBooks, onSetBooks }}>
+    <BooksContext.Provider
+      value={{ ...state, onGetBooks, onSetBooks, onGetBook }}>
       {children}
     </BooksContext.Provider>
   );

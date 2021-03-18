@@ -33,6 +33,9 @@ export default StyleSheet.create({
     maxHeight: '100%',
   },
   // Margins
+  marginT10: {
+    marginTop: moderateScale(10, 0.3),
+  },
   marginT15: {
     marginTop: moderateScale(15, 0.3),
   },
@@ -102,6 +105,9 @@ export default StyleSheet.create({
   fontSize18: {
     fontSize: moderateScale(18, 0.3),
   },
+  fontSize22: {
+    fontSize: moderateScale(22, 0.3),
+  },
   fontSize32: {
     fontSize: moderateScale(32, 0.3),
   },
@@ -110,5 +116,16 @@ export default StyleSheet.create({
   },
   textCenter: {
     textAlign: 'center',
+  },
+  // Shadow
+  shadow: {
+    shadowColor: Colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
   },
 });

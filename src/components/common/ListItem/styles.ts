@@ -12,14 +12,6 @@ export default StyleSheet.create({
     marginVertical: moderateScale(7.5, 0.3),
     marginHorizontal: moderateScale(15, 0.3),
     borderRadius: moderateScale(5, 0.3),
-    shadowColor: Colors.black,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
   },
   image: {
     width: moderateScale(50, 0.3),

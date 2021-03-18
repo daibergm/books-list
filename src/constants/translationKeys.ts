@@ -24,6 +24,12 @@ export const tKeys = {
   logoutBtn: 'logoutBtn',
   languageBtn: 'languageBtn',
   languageLabel: 'languageLabel',
+  commentsLabel: 'commentsLabel',
+  // BookDetail screen
+  availableLabel: 'availableLabel',
+  addBtn: 'addBtn',
+  rentBtn: 'rentBtn',
+  suggestedLabel: 'suggestedLabel',
   // Header
   searchLabel: 'searchLabel',
 };
