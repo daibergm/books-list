@@ -22,7 +22,12 @@ const LibraryWithLoading = WithLoading(LibraryComponent);
 
 const LibraryContainer = () => {
   const { books, onGetBooks, onSetBooks } = useContext(BooksContext);
-  const { onShowAlert, globalLoading } = useContext(SessionContext);
+  const {
+    onShowAlert,
+    globalLoading,
+    onShowLoading,
+    onHideLoading,
+  } = useContext(SessionContext);
   const [showInput, setShowInput] = useState(false);
   const { t } = useTranslation();
 
@@ -33,6 +38,7 @@ const LibraryContainer = () => {
   const onHandlerRightPress = () => setShowInput(!showInput);
 
   const onHandlerChange = async (value: string) => {
+    onShowLoading && onShowLoading();
     const rs = await getBooks();
 
     if (!isEmpty(rs.data)) {
@@ -41,14 +47,15 @@ const LibraryContainer = () => {
         obj.title.toLowerCase().includes(value.toLowerCase()),
       );
       onSetBooks && onSetBooks(filteredBooks);
-      return;
+    } else {
+      onShowAlert &&
+        onShowAlert({
+          message: rs,
+          type: 'danger',
+        });
     }
 
-    onShowAlert &&
-      onShowAlert({
-        message: rs,
-        type: 'danger',
-      });
+    onHideLoading && onHideLoading();
   };
 
   return (

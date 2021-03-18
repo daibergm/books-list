@@ -9,7 +9,7 @@ import { LoginComponent } from '../../components/';
 // @types
 import { User } from '../../types/user';
 
-const LoginContainer: React.FC = () => {
+const LoginContainer = () => {
   const { onLogin, isLoading } = useContext(SessionContext);
 
   const onHandlerSubmit = async (data: User) => {
