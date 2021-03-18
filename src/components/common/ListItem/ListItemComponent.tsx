@@ -27,7 +27,7 @@ const ListItemComponent = (props: Props) => {
   return (
     <TouchableOpacity
       onPress={onHandlerPress}
-      style={[Styles.item, GeneralStyles.flexRow]}>
+      style={[Styles.item, GeneralStyles.flexRow, GeneralStyles.shadow]}>
       <Image style={Styles.image} source={source} />
       <View style={Styles.descriptionContainer}>
         <Text black style={GeneralStyles.fontSize16}>

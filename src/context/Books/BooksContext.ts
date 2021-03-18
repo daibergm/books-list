@@ -5,7 +5,7 @@ import { Book } from '../../types/book';
 
 export type State = {
   books: Book[];
-  book?: Book;
+  book: Book;
   isLoading: boolean;
   onGetBooks?: () => void;
   onSetBooks?: (books: Book[]) => void;
@@ -16,6 +16,14 @@ export const initialState: State = {
   books: [],
   isLoading: false,
   onGetBook: (id: number) => id,
+  book: {
+    id: 0,
+    author: '',
+    genre: '',
+    publisher: '',
+    title: '',
+    year: '',
+  },
 };
 
 const BooksContext: Context<State> = createContext(initialState);

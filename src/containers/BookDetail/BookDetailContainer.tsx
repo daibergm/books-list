@@ -1,33 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
-import { View } from 'react-native';
 
 // @Components
-import { Text } from '../../components/';
-
-// @Assets
-import { GeneralStyles } from '../../assets/';
+import { BookDetailComponent } from '../../components/';
 
 // @Context
-import { BooksContext } from '../../context/';
+import { BooksContext, SessionContext } from '../../context/';
+
+// @Hoc
+import WithLoading from '../../hoc/WithLoading';
+
+// @Utils
+import { getSuggestedBooks } from '../../utils/';
+
+const BookDetailWithLoading = WithLoading(BookDetailComponent);
 
 type Props = {
   bookId: number;
 };
 
 const BookDetailContainer = ({ bookId }: Props) => {
-  const { onGetBook, book } = useContext(BooksContext);
+  const { onGetBook, book, books } = useContext(BooksContext);
+  const { globalLoading } = useContext(SessionContext);
+  const suggestedBooks = getSuggestedBooks(book, books);
 
   useEffect(() => {
     onGetBook(bookId);
   }, []);
 
   return (
-    <View style={GeneralStyles.justifyCenter}>
-      <Text style={[GeneralStyles.textCenter, GeneralStyles.fontSize18]}>
-        {`Book id: ${bookId}`}
-      </Text>
-    </View>
+    <BookDetailWithLoading
+      suggestedBooks={suggestedBooks}
+      isLoading={globalLoading as boolean}
+      book={book}
+    />
   );
 };
 

@@ -33,8 +33,11 @@ import { BooksState } from '../../context/';
 // @Components
 import { TabIcon, TabText } from './TabComponents';
 
+// @Types
+import { LibraryStackParamList } from '../../types/';
+
 // Variables
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<LibraryStackParamList>();
 const Tab = createBottomTabNavigator();
 
 const LibraryStack = () => (

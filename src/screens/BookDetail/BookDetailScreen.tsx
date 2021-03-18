@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
 
 // @Components
@@ -11,24 +12,36 @@ import { BookDetailContainer } from '../../containers/';
 // @constants
 import { BOOK_DETAIL_ROUTE } from '../../constants/';
 
-type StackParamList = {
-  params: { bookId: number };
-};
+// @Types
+import { LibraryStackParamList } from '../../types/';
 
-type BookDetailScreenRouteProp = RouteProp<StackParamList, 'params'>;
+type NavigationProps = StackNavigationProp<
+  LibraryStackParamList,
+  'BOOK_DETAIL'
+>;
+
+type RouteProps = RouteProp<LibraryStackParamList, 'BOOK_DETAIL'>;
 
 type Props = {
-  route: BookDetailScreenRouteProp;
+  navigation: NavigationProps;
+  route: RouteProps;
 };
 
-const BookDetailScreen = ({ route: { params } }: Props) => {
+const BookDetailScreen = ({ navigation, route }: Props) => {
   const { t } = useTranslation();
+
+  const onGoBack = () => navigation.goBack();
 
   return (
     <ContainerComponent>
       <>
-        <Header title={t(BOOK_DETAIL_ROUTE)} />
-        <BookDetailContainer bookId={params.bookId} />
+        <Header
+          hasLeftIcon
+          leftIconName="chevron-back-outline"
+          leftIconPress={onGoBack}
+          title={t(BOOK_DETAIL_ROUTE)}
+        />
+        <BookDetailContainer bookId={route.params.bookId} />
       </>
     </ContainerComponent>
   );

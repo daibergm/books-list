@@ -4,6 +4,9 @@ import { AgeDropdownItem } from '../types/';
 // @Constants
 import { tKeys } from '../constants/';
 
+// @Types
+import { Book } from '../types/book';
+
 /**
  * Used to generate an array of ages
  * @param {any} t Function to translate a string
@@ -27,3 +30,14 @@ export const ageGenerator = (t: any): AgeDropdownItem[] => {
 
   return agesItems;
 };
+
+/**
+ * Used to get all suggested books based on genre
+ * @param {Book} book Current book
+ * @param {Book[]} books List of books
+ * @returns {Book[]}
+ */
+export const getSuggestedBooks = (book: Book, books: Book[]): Book[] =>
+  books.filter(
+    (item) => item.genre === book.genre && item.title !== book.title,
+  );
