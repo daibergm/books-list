@@ -33,6 +33,7 @@ const resources = {
       // General
       loading: 'Loading...',
       // Routes
+      LIBRARY: 'Library',
       WISHLIST: 'Wishlist',
       ADD_NEW: 'Add New',
       RENTALS: 'Rentals',
@@ -77,6 +78,7 @@ const resources = {
       ADD_NEW: 'Nuevo',
       RENTALS: 'Alquileres',
       SETTINGS: 'Configuración',
+      LIBRARY: 'Librería',
     },
   },
 };
