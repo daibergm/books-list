@@ -1,3 +1,9 @@
+export type Comment = {
+  name: string;
+  comment: string;
+  gender: string;
+};
+
 export type Book = {
   id: number;
   author: string;
@@ -6,4 +12,5 @@ export type Book = {
   publisher: string;
   year: string;
   image_url?: string;
+  comments?: Comment[];
 };
