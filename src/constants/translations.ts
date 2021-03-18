@@ -23,6 +23,9 @@ const resources = {
       rentalsLabel: 'Rentals',
       // Settings screen
       settingsLabel: 'Settings',
+      logoutBtn: 'Logout',
+      languageBtn: 'Change Language',
+      languageLabel: 'Actual language: English',
       // Header
       searchLabel: 'Search',
       // Alerts
@@ -60,6 +63,9 @@ const resources = {
       rentalsLabel: 'Alquileres',
       // Settings screen
       settingsLabel: 'Configuración',
+      logoutBtn: 'Cerrar Sesión',
+      languageBtn: 'Cambiar Idioma',
+      languageLabel: 'Idioma actual: Español',
       // Header
       searchLabel: 'Buscar',
       // Alerts

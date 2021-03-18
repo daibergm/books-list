@@ -21,6 +21,9 @@ export const tKeys = {
   rentalsLabel: 'rentalsLabel',
   // Settings screen
   settingsLabel: 'settingsLabel',
+  logoutBtn: 'logoutBtn',
+  languageBtn: 'languageBtn',
+  languageLabel: 'languageLabel',
   // Header
   searchLabel: 'searchLabel',
 };

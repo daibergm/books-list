@@ -68,6 +68,8 @@ export default StyleSheet.create({
   },
   secondaryButton: {
     backgroundColor: Colors.white,
+    borderColor: Colors.primary,
+    borderWidth: 1,
   },
   // Inputs
   inputStyle: {

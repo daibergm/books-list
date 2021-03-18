@@ -22,6 +22,7 @@ const ButtonComponent = ({ secondary, ...otherProps }: Props) => {
         GeneralStyles.fontSize18,
         Style.font,
         GeneralStyles.defaultFont,
+        secondary && Style.textSecondary,
       ]}
       buttonStyle={[GeneralStyles.defaultButton, buttonStyle]}
       disabledStyle={GeneralStyles.disabledButton}
