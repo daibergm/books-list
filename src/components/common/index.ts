@@ -6,6 +6,7 @@ import { Header } from './Header/';
 import { Switch } from './Switch/';
 import { Alert } from './Alert/';
 import { ListItem } from './ListItem/';
+import { SpringAnimationComponent } from './SpringAnimation/';
 
 export {
   ContainerComponent,
@@ -16,4 +17,5 @@ export {
   Switch,
   Alert,
   ListItem,
+  SpringAnimationComponent,
 };
