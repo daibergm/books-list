@@ -38,6 +38,7 @@ const resources = {
       ADD_NEW: 'Add New',
       RENTALS: 'Rentals',
       SETTINGS: 'Settings',
+      BOOK_DETAIL: 'Book Detail',
     },
   },
   es: {
@@ -79,6 +80,7 @@ const resources = {
       RENTALS: 'Alquileres',
       SETTINGS: 'Configuración',
       LIBRARY: 'Librería',
+      BOOK_DETAIL: 'Detalle del Libro',
     },
   },
 };
