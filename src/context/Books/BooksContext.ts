@@ -12,18 +12,20 @@ export type State = {
   onGetBook: (id: number) => void;
 };
 
+export const mockBook: Book = {
+  id: 0,
+  author: '',
+  genre: '',
+  publisher: '',
+  title: '',
+  year: '',
+};
+
 export const initialState: State = {
   books: [],
   isLoading: false,
   onGetBook: (id: number) => id,
-  book: {
-    id: 0,
-    author: '',
-    genre: '',
-    publisher: '',
-    title: '',
-    year: '',
-  },
+  book: mockBook,
 };
 
 const BooksContext: Context<State> = createContext(initialState);

@@ -2,7 +2,7 @@
 import { Book } from '../../types/book';
 
 // @Context
-import { initialState, State } from './BooksContext';
+import { initialState, State, mockBook } from './BooksContext';
 import { Action, ActionTypes } from './types';
 
 const BooksReducer = (state: State = initialState, action: Action) => {
@@ -50,7 +50,7 @@ const BooksReducer = (state: State = initialState, action: Action) => {
     case ActionTypes.GET_BOOK_FAILURE: {
       const newState: State = {
         ...state,
-        book: undefined,
+        book: mockBook,
         isLoading: false,
       };
 
